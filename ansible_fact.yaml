@@ -1,0 +1,7 @@
+---
+ - name: print the fact
+   hosts: localhost
+   tasks:
+   - name: print the fact of local var
+     debug:
+       var: ansible_facts

@@ -1,0 +1,28 @@
+---
+ - name: work with custom facts
+   hosts: app
+   become: yes
+   vars:
+     a: /etc/ansible/facts.d
+     b: custom.fact
+   tasks:
+   - file: 
+       state: directory
+       path: "{{a}}"
+       recurse: yes
+   - copy:
+       src: "{{b}}"
+       dest: "{{a}}"
+ 
+ - name: install the pkg
+   hosts: app
+   become: yes
+   tasks:
+   - yum:
+       name: '{{ansible_facts["ansible_local"]["custom"]["general"]["package"]}}'
+       state: present
+   - service: 
+       name: '{{ansible_facts["ansible_local"]["custom"]["general"]["service"]}}'
+       state: '{{ansible_facts["ansible_local"]["custom"]["general"]["state"]}}'
+
+

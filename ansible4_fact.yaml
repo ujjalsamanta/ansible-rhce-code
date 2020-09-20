@@ -1,0 +1,8 @@
+---
+ - name: print the fact
+   hosts: localhost
+   tasks:
+   - name: print the fact of local var
+     debug:
+       msg:
+         - "The ip address is {{ansible_facts['default_ipv4']['address']}} and  hostname is {{ansible_facts['fqdn']}}"
