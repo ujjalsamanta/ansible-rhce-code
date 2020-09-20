@@ -1,0 +1,9 @@
+---
+ - name: hi
+   hosts: 20.1.1.11
+   tasks:
+   - shell: "bash --version"
+     register: bash
+   - set_fact:
+       ujjal: "{{bash['stdout'].split('\n')[0].split()[3]}}"
+   - debug: var=ujjal
